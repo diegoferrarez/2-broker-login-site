@@ -13,5 +13,6 @@ public interface DataUsersService {
    ResponseEntity<Optional<DataRequest>> InactivateUser(String id);
    List<DataResponse> findAll();
    Optional<DataResponse> findById(String id);
+   Optional<DataResponse> findByName(String userLogin, String password);
 
 }

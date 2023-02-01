@@ -15,9 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 
 @Service
@@ -31,7 +30,7 @@ public class DataUsersServiceImpl implements DataUsersService {
     @Override
     @Transactional
     public DataResponse createUsers(DataRequest dto) {
-        var registerProduct = this.repository.save(savedProduct(dto));
+        var registerProduct = this.repository.save(savedUser(dto));
         return this.mapper.toResponse(registerProduct);
     }
 
@@ -63,6 +62,11 @@ public class DataUsersServiceImpl implements DataUsersService {
         return repository.findById(id).map(DataResponse::converter);
     }
 
+    @Override
+    public Optional<DataResponse> findByName(String userLogin, String password) {
+        return Optional.empty();
+    }
+
     private Users savedProduct (DataRequest p){
         return Users.builder()
                 .login(p.getLogin())
@@ -72,6 +76,18 @@ public class DataUsersServiceImpl implements DataUsersService {
                 .statusCorp(p.getStatusCorp())
                 .build();
     }
+
+    private Users savedUser (DataRequest p) {
+        String uuid = "corp_" + UUID.randomUUID().toString().substring(0,3);
+        return Users.builder()
+                .login(p.getLogin())
+                .password(p.getPassword())
+                .numberCorp(uuid)
+                .emailCorp(p.getEmailCorp())
+                .statusCorp(p.getStatusCorp())
+                .build();
+    }
+
 
     public DataUsersServiceImpl(RegisterProductMapper mapper) {
         this.mapper = mapper;

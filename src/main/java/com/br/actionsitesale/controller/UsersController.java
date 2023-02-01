@@ -3,6 +3,7 @@ package com.br.actionsitesale.controller;
 import com.br.actionsitesale.controller.dto.DataRequest;
 import com.br.actionsitesale.controller.dto.DataResponse;
 import com.br.actionsitesale.service.DataUsersService;
+import com.br.actionsitesale.utils.UserConstants;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,15 @@ public class UsersController {
     public List<DataResponse> getall(){
         return dataUsersService.findAll();
     }
+
+    @ApiOperation(value = "Busca um usuário por id")
+    @GetMapping("/findby/name")
+    @ResponseStatus(HttpStatus.FOUND)
+    public Optional<DataResponse> getByName(@RequestHeader(name = UserConstants.USER_SIGN_HEADER)String userLogin,
+                                            @RequestHeader(name = UserConstants.USER_PASS_HEADER)String password){
+        return dataUsersService.findByName(userLogin, password);
+    }
+
 
     @ApiOperation(value = "Busca um usuário por id")
     @GetMapping("/findby/id/{id}")
