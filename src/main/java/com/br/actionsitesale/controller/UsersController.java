@@ -31,14 +31,13 @@ public class UsersController {
         return dataUsersService.findAll();
     }
 
-    @ApiOperation(value = "Busca um usuário por id")
+    @ApiOperation(value = "Busca um usuário pelo nome")
     @GetMapping("/findby/name")
     @ResponseStatus(HttpStatus.FOUND)
     public Optional<DataResponse> getByName(@RequestHeader(name = UserConstants.USER_SIGN_HEADER)String userLogin,
                                             @RequestHeader(name = UserConstants.USER_PASS_HEADER)String password){
         return dataUsersService.findByName(userLogin, password);
     }
-
 
     @ApiOperation(value = "Busca um usuário por id")
     @GetMapping("/findby/id/{id}")
