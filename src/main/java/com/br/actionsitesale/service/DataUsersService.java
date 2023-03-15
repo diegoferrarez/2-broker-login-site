@@ -1,7 +1,7 @@
 package com.br.actionsitesale.service;
 
-import com.br.actionsitesale.controller.dto.DataRequest;
-import com.br.actionsitesale.controller.dto.DataResponse;
+import com.br.actionsitesale.controller.dto.request.DataRequest;
+import com.br.actionsitesale.controller.dto.response.DataResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -13,6 +13,6 @@ public interface DataUsersService {
    ResponseEntity<Optional<DataRequest>> InactivateUser(String id);
    List<DataResponse> findAll();
    Optional<DataResponse> findById(String id);
-   Optional<DataResponse> findByName(String userLogin, String password);
+   List<DataResponse> findUser(String unit, String serialNumberUnit);
 
 }

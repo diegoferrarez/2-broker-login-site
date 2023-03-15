@@ -1,7 +1,7 @@
 package com.br.actionsitesale.controller;
 
-import com.br.actionsitesale.controller.dto.DataRequest;
-import com.br.actionsitesale.controller.dto.DataResponse;
+import com.br.actionsitesale.controller.dto.request.DataRequest;
+import com.br.actionsitesale.controller.dto.response.DataResponse;
 import com.br.actionsitesale.service.DataUsersService;
 import com.br.actionsitesale.utils.UserConstants;
 import io.swagger.annotations.ApiOperation;
@@ -34,9 +34,9 @@ public class UsersController {
     @ApiOperation(value = "Busca um usuário pelo nome")
     @GetMapping("/findby/name")
     @ResponseStatus(HttpStatus.FOUND)
-    public Optional<DataResponse> getByName(@RequestHeader(name = UserConstants.USER_SIGN_HEADER)String userLogin,
-                                            @RequestHeader(name = UserConstants.USER_PASS_HEADER)String password){
-        return dataUsersService.findByName(userLogin, password);
+    public List<DataResponse> getByName(@RequestHeader(name = UserConstants.USER_UNIT_HEADER)String unit,
+                                        @RequestHeader(name = UserConstants.SERIAL_UNIT_NUMBER)String serialNumberUnit){
+        return dataUsersService.findUser(unit, serialNumberUnit);
     }
 
     @ApiOperation(value = "Busca um usuário por id")

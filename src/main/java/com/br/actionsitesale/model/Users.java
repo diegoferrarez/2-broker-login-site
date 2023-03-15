@@ -17,10 +17,9 @@ public class Users {
 
     @Id
     private String id;
-    private String login;
-    private String password;
-    private String numberCorp;
-    private String emailCorp;
+    private String unit;
+    private String serialNumberUnit;
+    private Token credential;
     private StatusLogin statusCorp;
 
 }
